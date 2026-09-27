@@ -28,9 +28,11 @@ import sys
 import time
 from pathlib import Path
 
+from dotenv import load_dotenv
 from openai import OpenAI
 
 HERE = Path(__file__).resolve().parent
+load_dotenv(HERE.parent / ".env")
 ENDPOINT = "/v1/chat/completions"
 TERMINAL_STATUSES = {"completed", "failed", "expired", "cancelled"}
 MAX_REQUESTS_PER_BATCH = 50_000
