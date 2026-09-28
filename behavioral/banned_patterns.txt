@@ -1,0 +1,14 @@
+# HARD_BAN
+chain[- ]of[- ]thought
+\bCoT\b
+scratchpad
+inner monologue
+hidden reasoning
+\bchannels?\b
+\bmonitor
+classifier
+detector
+interpretab
+transcript
+controllab
+model[-]card

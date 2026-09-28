@@ -19,6 +19,7 @@ import argparse
 import json
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -39,6 +40,16 @@ def main() -> None:
     parser.add_argument("--num-doc-ideas", type=int, default=1, help="per (fact, doc type)")
     parser.add_argument("--doc-repeat-range", type=int, default=1,
                         help="each doc spec is rendered randint(1, this) times")
+    parser.add_argument("--banned-patterns-path", type=Path, default=None,
+                        help="file with one regex per line; forwarded to synth_doc_generation.py")
+    parser.add_argument("--type-temperature", type=float, default=None)
+    parser.add_argument("--idea-temperature", type=float, default=None)
+    parser.add_argument("--write-temperature", type=float, default=None)
+    parser.add_argument("--repair-temperature", type=float, default=None)
+    parser.add_argument("--min-tokens", type=int, default=1000)
+    parser.add_argument("--max-tokens", type=int, default=1500)
+    parser.add_argument("--min-date", type=date.fromisoformat, default=date(2025, 8, 5))
+    parser.add_argument("--max-date", type=date.fromisoformat, default=date(2027, 8, 31))
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--poll-seconds", type=int, default=20)
     args = parser.parse_args()
@@ -75,9 +86,23 @@ def main() -> None:
         "--num-doc-types", str(args.num_doc_types),
         "--num-doc-ideas", str(args.num_doc_ideas),
         "--doc-repeat-range", str(args.doc_repeat_range),
+        "--min-tokens", str(args.min_tokens),
+        "--max-tokens", str(args.max_tokens),
+        "--min-date", args.min_date.isoformat(),
+        "--max-date", args.max_date.isoformat(),
         "--seed", str(args.seed),
         "--poll-seconds", str(args.poll_seconds),
     ]
+    if args.banned_patterns_path:
+        cmd += ["--banned-patterns-path", str(args.banned_patterns_path)]
+    for flag, value in [
+        ("--type-temperature", args.type_temperature),
+        ("--idea-temperature", args.idea_temperature),
+        ("--write-temperature", args.write_temperature),
+        ("--repair-temperature", args.repair_temperature),
+    ]:
+        if value is not None:
+            cmd += [flag, str(value)]
     print("running:", " ".join(cmd))
     subprocess.run(cmd, check=True)
 

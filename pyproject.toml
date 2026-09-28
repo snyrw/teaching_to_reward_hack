@@ -3,6 +3,8 @@ name = "teaching-to-reward-hack"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "faker>=40.39.0",
     "openai>=3.19.2",
     "python-dotenv>=1.2.3",
+    "tiktoken>=0.14.0",
 ]
