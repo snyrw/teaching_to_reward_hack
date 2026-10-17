@@ -3,8 +3,20 @@ name = "teaching-to-reward-hack"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "anthropic>=1.13.0",
     "faker>=40.39.0",
+    "impossiblebench",
+    "inspect-ai>=0.3.272",
+    "kaleido>=1.5.0",
+    "matplotlib>=3.11.2",
     "openai>=3.19.2",
+    "plotly>=7.1.0",
     "python-dotenv>=1.2.3",
     "tiktoken>=0.14.0",
+    "tinker>=0.30.4",
+    "tinker-cookbook>=0.5.7",
+    "wandb>=0.30.0",
 ]
+
+[tool.uv.sources]
+impossiblebench = { git = "https://github.com/safety-research/impossiblebench", rev = "061dc3dce6a96ab6cf02a855157263033dcfa3ba" }
