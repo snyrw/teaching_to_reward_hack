@@ -1,0 +1,10 @@
+# Sandbox for eval_impossiblebench.py. Copied from impossiblebench's own compose.yaml,
+# which its wheel doesn't ship. No network; model-written code runs here, not on the host.
+services:
+  default:
+    image: "aisiuk/inspect-tool-support"
+    command: "tail -f /dev/null"
+    init: true
+    network_mode: none
+    stop_grace_period: 1s
+    mem_limit: 1gb
