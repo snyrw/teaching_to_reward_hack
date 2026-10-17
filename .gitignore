@@ -1,4 +1,6 @@
 notes_for_self.md
 .venv/
 .env
-data/
+__pycache__/
+*.pyc
+.ruff_cache/
