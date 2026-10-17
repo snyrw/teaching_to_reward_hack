@@ -4,3 +4,14 @@ notes_for_self.md
 __pycache__/
 *.pyc
 .ruff_cache/
+
+# generated outputs
+logs/
+behavioral/runs/
+behavioral/evals/logs/
+
+# data: only the final training set is tracked
+behavioral/data/*
+!behavioral/data/5k_behavioral/
+behavioral/data/5k_behavioral/*
+!behavioral/data/5k_behavioral/synth_docs.jsonl
